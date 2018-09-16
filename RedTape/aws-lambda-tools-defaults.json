@@ -15,5 +15,5 @@
   "function-runtime":"dotnetcore1.0",
   "function-memory-size" : 256,
   "function-timeout" : 30,
-  "function-handler" : "Echo::Echo.Function::FunctionHandler"
+  "function-handler" : "RedTape::RedTape.Function::FunctionHandler"
 }

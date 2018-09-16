@@ -7,35 +7,41 @@ namespace RedTape.Test
 {
     public class RedTapeTest
     {
+        private SkillRequest _skillRequest;
+        private SkillResponse _skillResponse;
+
         [Theory]
-        [InlineData("9429036563593")]
-        public void Can_get_station(string station)
+        [InlineData("9429037784669")]
+        public void Can_get_by_nzbn(string nzbn)
         {
-            var skillRequest = Given_a_request_for_this_nzbn(string.Format(@", ""value"": ""{0}""", station));
+            Given_a_request_for_this_nzbn(string.Format(@", ""value"": ""{0}""", nzbn));
 
-            var skillResponse = When_I_send_it_to_the_function(skillRequest);
+            When_I_send_it_to_the_function();
 
-            Then_the_response_is_valid(skillResponse);
+            Then_the_response_is_valid();
         }
 
-        private SkillRequest Given_a_request_for_this_nzbn(string station)
+        private void Given_a_request_for_this_nzbn(string nzbn)
         {
-            return JsonConvert.DeserializeObject<SkillRequest>(string.Format(Template, station));
+            var skillAsString = string.Format(Template, nzbn);
+
+            _skillRequest = JsonConvert.DeserializeObject<SkillRequest>(skillAsString);
         }
 
-        private SkillResponse When_I_send_it_to_the_function(SkillRequest request)
+        private void When_I_send_it_to_the_function()
         {
             var function = new Function();
 
-            return function.FunctionHandler(request, null);
+            _skillResponse = function.FunctionHandler(_skillRequest, null);
         }
 
-        private void Then_the_response_is_valid(SkillResponse response)
+        private void Then_the_response_is_valid()
         {
-            var output = response.Response.OutputSpeech as PlainTextOutputSpeech;
+            var output = _skillResponse.Response.OutputSpeech as PlainTextOutputSpeech;
 
             Assert.NotNull(output);
-            Assert.True(output.Text.Contains("The next departure"));
+
+            Assert.True(output.Text.Contains("That New Zealand Business Number is for the entity"));
         }
 
         private const string Template = @"{{
@@ -56,10 +62,10 @@ namespace RedTape.Test
     ""locale"": ""en-US"",
     ""timestamp"": ""2017-06-17T04:02:07Z"",
     ""intent"": {{
-      ""name"": ""TrainIntent"",
+      ""name"": ""BusinessNumberIntent"",
       ""slots"": {{
-        ""station"": {{
-          ""name"": ""station""{0}
+        ""nzbn"": {{
+          ""name"": ""nzbn""{0}
         }}
       }}
     }}

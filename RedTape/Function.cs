@@ -10,13 +10,14 @@ namespace RedTape
 {
     public class Function
     {
-        private const string DefaultStation = "Ava";
+        private const string DefaultNzbn = "9429037784669";
 
         public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
         {
             LambdaLogger.Log($"SkillRequest input: {JsonConvert.SerializeObject(input)}");
 
-            Response response = new Response();
+            var response = new Response();
+
             IOutputSpeech innerResponse = null;
 
             if (input.GetRequestType() == typeof(Slight.Alexa.Framework.Models.Requests.RequestTypes.ILaunchRequest))
@@ -24,7 +25,8 @@ namespace RedTape
                 LambdaLogger.Log($"Default LaunchRequest made");
 
                 innerResponse = new PlainTextOutputSpeech();
-                (innerResponse as PlainTextOutputSpeech).Text = "Wellington Trains gives you real-time public transport information for Wellington, New Zealand. What station are you departing from?";
+
+                ((PlainTextOutputSpeech) innerResponse).Text = "Red Tape gives you the company details for a supplied New Zealand Business Number. What New Zealand Business Number are you looking for?";
                 
                 response.ShouldEndSession = false;
             }
@@ -36,30 +38,32 @@ namespace RedTape
 
                 var responseText = "";
                 
-                if (intent == "TrainIntent")
+                if (intent == "BusinessNumberIntent")
                 {
-                    var station = DefaultStation;
+                    var nzbn = DefaultNzbn;
 
-                    if (input.Request.Intent.Slots.ContainsKey("station") && !string.IsNullOrWhiteSpace(input.Request.Intent.Slots["station"].Value))
+                    if (input.Request.Intent.Slots.ContainsKey("nzbn") && !string.IsNullOrWhiteSpace(input.Request.Intent.Slots["nzbn"].Value))
                     {
-                        station = input.Request.Intent.Slots["station"].Value;
-                        LambdaLogger.Log($"Station requested: {station}");
+                        nzbn = input.Request.Intent.Slots["nzbn"].Value;
+
+                        LambdaLogger.Log($"NZBN requested: {nzbn}");
                     }
 
-                    if (station.ToLower()  == "version")
+                    if (nzbn.ToLower()  == "version")
                     {
-                        responseText = "This is Wellington Trains version 1.0";
+                        responseText = "This is Red Tape version 1.0";
                     }
                     else
                     {
-                        Task.Run(async () => responseText = await EntityGetter.Get(station)).Wait();
+                        Task.Run(async () => responseText = await EntityGetter.Get(nzbn)).Wait();
                     }
                 
                     response.ShouldEndSession = true;
                 }
                 else if (intent == "AMAZON.HelpIntent")
                 {
-                    responseText = "You can ask me when the next train leaves from your nearest station. What station are you departing from? ";
+                    responseText = "You can ask me for the company details for a supplied New Zealand Business Number. What New Zealand Business Number are you looking for?";
+
                     response.ShouldEndSession = false;
                 }
                 else if (intent == "AMAZON.StopIntent")
@@ -74,14 +78,18 @@ namespace RedTape
                 LambdaLogger.Log($"Response: {responseText} - Session should end: {response.ShouldEndSession}");
 
                 innerResponse = new PlainTextOutputSpeech();
-                (innerResponse as PlainTextOutputSpeech).Text = responseText;
+
+                ((PlainTextOutputSpeech) innerResponse).Text = responseText;
             }
 
             response.OutputSpeech = innerResponse;
 
-            var skillResponse = new SkillResponse();
-            skillResponse.Response = response;
-            skillResponse.Version = "1.0";
+            var skillResponse = new SkillResponse
+            {
+                Response = response,
+                Version = "1.0"
+            };
+
 
             return skillResponse;
         }

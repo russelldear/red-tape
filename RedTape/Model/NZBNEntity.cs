@@ -7,7 +7,7 @@ namespace RedTape.Model
     public partial class NzbnEntity
     {
         [JsonProperty("entityStatusCode")]
-        public long EntityStatusCode { get; set; }
+        public long? EntityStatusCode { get; set; }
 
         [JsonProperty("entityName")]
         public string EntityName { get; set; }
@@ -25,16 +25,16 @@ namespace RedTape.Model
         public string EntityStatusDescription { get; set; }
 
         [JsonProperty("registrationDate")]
-        public DateTime RegistrationDateTime { get; set; }
+        public DateTime? RegistrationDateTime { get; set; }
 
         [JsonProperty("startDate")]
-        public DateTime StartDateTime { get; set; }
+        public DateTime? StartDateTime { get; set; }
 
         [JsonProperty("sourceRegister")]
         public string SourceRegister { get; set; }
 
         [JsonProperty("sourceRegisterUniqueIdentifier")]
-        public long SourceRegisterUniqueIdentifier { get; set; }
+        public long? SourceRegisterUniqueIdentifier { get; set; }
 
         [JsonProperty("gstStatus")]
         public object GstStatus { get; set; }
@@ -109,7 +109,7 @@ namespace RedTape.Model
     public partial class Company
     {
         [JsonProperty("annualReturnFilingMonth")]
-        public long AnnualReturnFilingMonth { get; set; }
+        public long? AnnualReturnFilingMonth { get; set; }
 
         [JsonProperty("financialReportFilingMonth")]
         public object FinancialReportFilingMonth { get; set; }
@@ -121,16 +121,16 @@ namespace RedTape.Model
         public string AnnualReturnLastFiled { get; set; }
 
         [JsonProperty("hasConstitutionFiled")]
-        public bool HasConstitutionFiled { get; set; }
+        public bool? HasConstitutionFiled { get; set; }
 
         [JsonProperty("countryOfOrigin")]
         public object CountryOfOrigin { get; set; }
 
         [JsonProperty("overseasCompany")]
-        public bool OverseasCompany { get; set; }
+        public bool? OverseasCompany { get; set; }
 
         [JsonProperty("extensiveShareholding")]
-        public bool ExtensiveShareholding { get; set; }
+        public bool? ExtensiveShareholding { get; set; }
 
         [JsonProperty("stockExchangeListed")]
         public object StockExchangeListed { get; set; }
@@ -148,13 +148,13 @@ namespace RedTape.Model
         public List<object> Insolvencies { get; set; }
 
         [JsonProperty("removalCommenced")]
-        public bool RemovalCommenced { get; set; }
+        public bool? RemovalCommenced { get; set; }
     }
 
     public partial class Shareholding
     {
         [JsonProperty("numberOfShares")]
-        public long NumberOfShares { get; set; }
+        public long? NumberOfShares { get; set; }
 
         [JsonProperty("shareAllocation")]
         public List<ShareAllocation> ShareAllocation { get; set; }
@@ -169,7 +169,7 @@ namespace RedTape.Model
         public string Type { get; set; }
 
         [JsonProperty("appointmentDate")]
-        public DateTime AppointmentDateTime { get; set; }
+        public DateTime? AppointmentDateTime { get; set; }
 
         [JsonProperty("vacationDate")]
         public string VacationDateTime { get; set; }
@@ -202,7 +202,7 @@ namespace RedTape.Model
     public partial class ShareAllocation
     {
         [JsonProperty("allocation")]
-        public long Allocation { get; set; }
+        public long? Allocation { get; set; }
 
         [JsonProperty("shareholder")]
         public List<Shareholder> Shareholder { get; set; }
@@ -214,7 +214,7 @@ namespace RedTape.Model
         public string Type { get; set; }
 
         [JsonProperty("appointmentDate")]
-        public DateTime AppointmentDateTime { get; set; }
+        public DateTime? AppointmentDateTime { get; set; }
 
         [JsonProperty("vacationDate")]
         public object VacationDateTime { get; set; }
@@ -262,7 +262,7 @@ namespace RedTape.Model
     public partial class EntityStatus
     {
         [JsonProperty("entityStatus")]
-        public long EntityStatusEntityStatus { get; set; }
+        public long? EntityStatusEntityStatus { get; set; }
 
         [JsonProperty("startDate")]
         public object StartDateTime { get; set; }
@@ -286,13 +286,13 @@ namespace RedTape.Model
         public string RoleStatus { get; set; }
 
         [JsonProperty("startDate")]
-        public DateTime StartDateTime { get; set; }
+        public DateTime? StartDateTime { get; set; }
 
         [JsonProperty("endDate")]
         public object EndDateTime { get; set; }
 
         [JsonProperty("asicDirectorshipYn")]
-        public bool AsicDirectorshipYn { get; set; }
+        public bool? AsicDirectorshipYn { get; set; }
 
         [JsonProperty("asicName")]
         public object AsicName { get; set; }
@@ -313,6 +313,6 @@ namespace RedTape.Model
         public List<Dictionary<string, string>> RoleAsicAddress { get; set; }
 
         [JsonProperty("uniqueIdentifier")]
-        public long UniqueIdentifier { get; set; }
+        public long? UniqueIdentifier { get; set; }
     }
 }
