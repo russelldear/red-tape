@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedTape", "echo\RedTape.xproj", "{8D57208B-EAA4-41CD-9BC2-0B24A7E510E6}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedTape", "RedTape\RedTape.xproj", "{8D57208B-EAA4-41CD-9BC2-0B24A7E510E6}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedTape.Test", "Echo.Test\RedTape.Test.xproj", "{8203B262-89C2-48E8-B4E0-756189B5E4F2}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedTape.Test", "RedTape.Test\RedTape.Test.xproj", "{8203B262-89C2-48E8-B4E0-756189B5E4F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A5DC5BC1-1FC4-4DEF-B6D2-176D9A25AEEB}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

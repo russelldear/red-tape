@@ -8,9 +8,9 @@
     },
     "xunit": "2.2.0-beta5-build3474",
     "dotnet-test-xunit": "2.2.0-*",
-    "echo": "1.0.0-*",
     "Slight.Alexa.Core": "1.0.10-beta",
-    "Newtonsoft.Json": "10.0.2"
+    "Newtonsoft.Json": "10.0.2",
+    "RedTape": "1.0.0-*"
   },
 
   "testRunner": "xunit",

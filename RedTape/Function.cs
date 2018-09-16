@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 
-namespace Echo
+namespace RedTape
 {
     public class Function
     {
@@ -52,7 +52,7 @@ namespace Echo
                     }
                     else
                     {
-                        Task.Run(async () => responseText = await TrainGetter.Get(station)).Wait();
+                        Task.Run(async () => responseText = await EntityGetter.Get(station)).Wait();
                     }
                 
                     response.ShouldEndSession = true;
