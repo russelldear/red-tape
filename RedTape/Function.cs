@@ -74,6 +74,18 @@ namespace RedTape
                 {
                     response.ShouldEndSession = true;
                 }
+                else if (intent == "AMAZON.FallbackIntent")
+                {
+                    responseText = "You can ask me for the company details for a supplied New Zealand Business Number. What New Zealand Business Number are you looking for?";
+
+                    response.ShouldEndSession = false;
+                }
+                else if (intent == "AMAZON.NavigateHomeIntent")
+                {
+                    responseText = "You can ask me for the company details for a supplied New Zealand Business Number. What New Zealand Business Number are you looking for?";
+
+                    response.ShouldEndSession = false;
+                }
 
                 LambdaLogger.Log($"Response: {responseText} - Session should end: {response.ShouldEndSession}");
 

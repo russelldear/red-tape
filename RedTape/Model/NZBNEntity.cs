@@ -313,6 +313,6 @@ namespace RedTape.Model
         public List<Dictionary<string, string>> RoleAsicAddress { get; set; }
 
         [JsonProperty("uniqueIdentifier")]
-        public long? UniqueIdentifier { get; set; }
+        public string UniqueIdentifier { get; set; }
     }
 }
