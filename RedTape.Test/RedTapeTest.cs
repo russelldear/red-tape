@@ -41,7 +41,7 @@ namespace RedTape.Test
 
             Assert.NotNull(output);
 
-            Assert.True(output.Text.Contains("That New Zealand Business Number is for the entity"));
+            Assert.Contains("That New Zealand Business Number is for the entity", output.Text);
         }
 
         private const string Template = @"{{
